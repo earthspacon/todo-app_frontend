@@ -29,10 +29,12 @@ function App() {
   const obj = useSelector((state: RootState) => state.obj) as any
 
   function add() {
-    const elem = db.ref('countries').push()
-    elem.set({ id: elem.key, text: value })
+    if (value.length > 3) {
+      const elem = db.ref('countries').push()
+      elem.set({ id: elem.key, text: value })
 
-    setNodata(false)
+      setNodata(false)
+    }
   }
 
   function remove(id: string) {
