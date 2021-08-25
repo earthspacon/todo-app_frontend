@@ -1,0 +1,58 @@
+.wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.colored {
+  list-style: none;
+  padding: 0;
+  width: 400px;
+  padding-left: 40px;
+}
+
+.colored li {
+  display: flex;
+  justify-content: space-between;
+  font-family: 'Trebuchet MS', 'Lucida Sans';
+  padding: 10px 30px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  border-left: 10px solid #f05d22;
+  box-shadow: 2px -2px 5px 0 rgba(0, 0, 0, 0.1),
+    -2px -2px 5px 0 rgba(0, 0, 0, 0.1), 2px 2px 5px 0 rgba(0, 0, 0, 0.1),
+    -2px 2px 5px 0 rgba(0, 0, 0, 0.1);
+  font-size: 20px;
+  letter-spacing: 2px;
+  transition: 0.3s all linear;
+}
+
+form {
+  padding-left: 30px;
+  padding-top: 15px;
+}
+
+input {
+  padding: 15px;
+  border-radius: 30px;
+}
+.add {
+  background-color: #1fc025;
+  border: 20px;
+  color: white;
+  padding: 10px;
+  text-decoration: none;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 30px;
+}
+
+.delete {
+  background-color: #ff2b2b;
+  border: 20px;
+  color: white;
+  padding: 5px;
+  text-decoration: none;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 30px;
+}

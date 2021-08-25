@@ -1,10 +1,27 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import { store } from './app/store';
-import { Provider } from 'react-redux';
-import * as serviceWorker from './serviceWorker';
+import React from 'react'
+import ReactDOM from 'react-dom'
+import App from './App'
+import { Provider } from 'react-redux'
+import './styles.css'
+import { AnyAction, createStore } from '@reduxjs/toolkit'
+
+const initialState = { obj: null }
+
+function reducer(state = initialState, action: AnyAction) {
+  switch (action.type) {
+    case 'ADD':
+      return {
+        ...state,
+        obj: action.payload,
+      }
+    default:
+      return state
+  }
+}
+
+export const store = createStore(reducer)
+
+export type RootState = ReturnType<typeof store.getState>
 
 ReactDOM.render(
   <React.StrictMode>
@@ -13,9 +30,4 @@ ReactDOM.render(
     </Provider>
   </React.StrictMode>,
   document.getElementById('root')
-);
-
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.unregister();
+)
