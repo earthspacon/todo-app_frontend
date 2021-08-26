@@ -29,7 +29,7 @@ function App() {
   const obj = useSelector((state: RootState) => state.obj) as any
 
   function add() {
-    if (value.length > 3) {
+    if (value) {
       const elem = db.ref('countries').push()
       elem.set({ id: elem.key, text: value })
 
@@ -57,7 +57,7 @@ function App() {
           {Object.keys(obj).map((elem) => {
             const child = obj[elem]
             return (
-              <li>
+              <li key={child.id}>
                 {child.text}
                 <button
                   className="delete"

@@ -11,6 +11,8 @@
 }
 
 .colored li {
+  word-break: break-word;
+  align-items: center;
   display: flex;
   justify-content: space-between;
   font-family: 'Trebuchet MS', 'Lucida Sans';
