@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from '../store/combine'
 import * as api from '../api/api'
+import { useHistory } from 'react-router-dom'
 
 function Todo() {
   const data = useSelector((state: RootState) => state.all.todos)
@@ -11,12 +12,16 @@ function Todo() {
   const [value, setValue] = useState('')
   const [id, setId] = useState('')
 
+  const history = useHistory()
+
   const update = () => {
     dispatch(api.getTodos())
   }
 
   useEffect(() => {
-    update()
+    if (localStorage.getItem('token')) {
+      update()
+    } else history.push('/login')
   })
 
   async function save(e: React.FormEvent<HTMLFormElement>) {
