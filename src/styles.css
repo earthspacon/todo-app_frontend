@@ -3,6 +3,11 @@
   justify-content: center;
 }
 
+.login {
+  display: flex;
+  justify-content: center;
+}
+
 .colored {
   list-style: none;
   padding: 0;
@@ -10,9 +15,12 @@
   padding-left: 40px;
 }
 
-.colored li {
+p {
   word-break: break-word;
-  align-items: center;
+}
+
+.colored li {
+  align-items: flex-start;
   display: flex;
   justify-content: space-between;
   font-family: 'Trebuchet MS', 'Lucida Sans';
@@ -28,7 +36,7 @@
   transition: 0.3s all linear;
 }
 
-form {
+form.add-form {
   padding-left: 30px;
   padding-top: 15px;
 }
@@ -48,8 +56,19 @@ input {
   border-radius: 30px;
 }
 
-.delete {
+button {
   background-color: #ff2b2b;
+  border: 20px;
+  color: white;
+  padding: 5px;
+  text-decoration: none;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 30px;
+}
+
+.edit {
+  background-color: #402bff;
   border: 20px;
   color: white;
   padding: 5px;
