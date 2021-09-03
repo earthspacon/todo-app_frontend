@@ -1,27 +1,14 @@
 import { useEffect, useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { RootState } from '../store/combine'
 import * as api from '../api/api'
-import { useHistory } from 'react-router-dom'
+import { observer } from 'mobx-react-lite'
+import store from '../store/store'
 
 function Todo() {
-  const data = useSelector((state: RootState) => state.all.todos)
-  const isLoading = useSelector((state: RootState) => state.loader.isLoading)
-  const dispatch = useDispatch()
-
   const [value, setValue] = useState('')
   const [id, setId] = useState('')
 
-  const history = useHistory()
-
-  const update = () => {
-    dispatch(api.getTodos())
-  }
-
   useEffect(() => {
-    if (localStorage.getItem('token')) {
-      update()
-    } else history.push('/login')
+    store.setTodos()
   })
 
   async function save(e: React.FormEvent<HTMLFormElement>) {
@@ -30,30 +17,33 @@ function Todo() {
     if (!id) {
       if (value.trim()) {
         await api.addTodo(value)
-        update()
+
+        store.setTodos()
         setValue('')
       }
     } else {
       await api.editTodo(id, value)
-      update()
+
+      store.setTodos()
       setValue('')
+      setId('')
     }
   }
 
   async function remove(id: string) {
     await api.deleteTodo(id)
-    update()
+    store.setTodos()
   }
 
   return (
     <div className="wrapper">
-      {isLoading ? (
+      {store.loading ? (
         <h2>Loading...</h2>
-      ) : !data.length ? (
+      ) : !store.todos.length ? (
         <h2>No countries entered</h2>
       ) : (
         <ul className="colored">
-          {data.map((elem) => {
+          {store.todos.map((elem) => {
             return (
               <li key={elem._id}>
                 <p>{elem.text}</p>
@@ -89,4 +79,4 @@ function Todo() {
   )
 }
 
-export default Todo
+export default observer(Todo)

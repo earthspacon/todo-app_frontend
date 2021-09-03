@@ -1,10 +1,7 @@
-import { Dispatch } from 'react'
 import User from '../models/User'
-import { TodosArray } from '../models/TodosArray'
-import { getAll } from '../store/showTodos'
+import { Todos } from '../models/Todos'
 import { api } from './api_instanse'
 import { AxiosResponse } from 'axios'
-import { setLoading } from '../store/isLoading'
 
 export async function login(
   username: string,
@@ -13,15 +10,8 @@ export async function login(
   return api.post<User>('/login', { username, password })
 }
 
-export function getTodos() {
-  return (
-    dispatch: Dispatch<{ type: string; payload: TodosArray | boolean }>
-  ) => {
-    api.get<TodosArray>('/').then((response) => {
-      dispatch(getAll(response.data))
-      dispatch(setLoading(false))
-    })
-  }
+export async function getTodos(): Promise<AxiosResponse<Todos[]>> {
+  return api.get<Todos[]>('/')
 }
 
 export async function addTodo(text: string): Promise<AxiosResponse> {

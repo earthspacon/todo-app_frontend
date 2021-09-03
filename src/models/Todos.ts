@@ -1,9 +1,7 @@
 import User from './User'
 
-export interface Todo {
+export interface Todos {
   author: User
   text: string
   _id: string
 }
-
-export type TodosArray = Todo[]
