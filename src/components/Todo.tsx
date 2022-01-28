@@ -7,9 +7,7 @@ function Todo() {
   const [value, setValue] = useState('')
   const [id, setId] = useState('')
 
-  useEffect(() => {
-    store.setTodos()
-  })
+  useEffect(() => store.setTodos(), [])
 
   async function save(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault()
